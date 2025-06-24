@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
 import HeaderComponent from './components/HeaderComponent'
 import ButtonComponent from './components/ButtonComponent'
@@ -25,10 +23,20 @@ function App() {
 
   const [user, setUser] = useState({});
 
+  // useEffect(() => {
+//   console.log("Ejecución cada vez que se renderiza el componente raíz")
+// })
+
+// useEffect(() => {
+//   console.log("Ejecución con cada cambio de la variable reactiva user")
+// }, [user])
+
   const login = (userInfo) => {
     console.log(userInfo);
     setUser(userInfo);
   }
+
+  const [showMovies, setShowMovies] =useState(true);
 
   const condition = true;
 
@@ -54,7 +62,10 @@ const handleChange = (e) => {
         {user.username && <h2 onClick={sayHello}>Hola {user.username}!</h2>}
         <Login handleLogin={login}></Login>
 
-        <MovieList></MovieList>
+        <button onClick={() => {setShowMovies(!showMovies)}}>Toggle Movies</button>
+        {showMovies && <MovieList></MovieList>}
+
+        {/* <MovieList></MovieList>
 
         <AnimalList></AnimalList>
 
@@ -73,7 +84,7 @@ const handleChange = (e) => {
 
         <br />
         <br />
-        <ButtonComponent></ButtonComponent>
+        <ButtonComponent></ButtonComponent> */}
       </main>
     </>
   )
